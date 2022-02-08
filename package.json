@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "name": "knect-dev-backend",
+  "description": "//",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knect-Dev/Knect-Dev-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Knect-Dev/Knect-Dev-Backend/issues"
+  },
+  "homepage": "https://github.com/Knect-Dev/Knect-Dev-Backend#readme"
+}
