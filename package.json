@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aws-sdk": "^2.1070.0",
     "express": "^4.17.2"
   },
   "name": "knect-dev-backend",
@@ -9,7 +10,6 @@
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
