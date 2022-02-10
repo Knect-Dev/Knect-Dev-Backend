@@ -32,7 +32,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Knect-Dev/Knect-Dev-Backend">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./assets/connection-svgrepo-com.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Knect.Dev</h3>
@@ -156,7 +156,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
+- [ ] List jobs and current status of application
 - [ ] Feature 2
 - [ ] Feature 3
     - [ ] Nested Feature
@@ -188,7 +188,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See [`LICENSE`](/LICENSE) for more information.
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
