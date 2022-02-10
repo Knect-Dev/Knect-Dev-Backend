@@ -1,20 +1,5 @@
 # Knect.dev
 
-//
-
-
-
-
-
-
-
-## Resources
-
-- [Choosing the Right DynamoDB Partition Key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/)
-- [Dynamoose Getting Started](https://dynamoosejs.com/getting_started/Introduction)
-- [DynamoDB Docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
-- [Object references and copying](https://javascript.info/object-copy)
-
 <div id="top"></div>
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
@@ -53,7 +38,7 @@
 <h3 align="center">Knect.Dev</h3>
 
   <p align="center">
-    Knect.Dev is a
+    Knect.Dev description
     <br />
     <a href="https://github.com/Knect-Dev/Knect-Dev-Backend"><strong>Explore the docs »</strong></a>
     <br />
@@ -203,7 +188,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [`LICENSE`](/LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -212,7 +197,15 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Spencer Tower - [Github](https://github.com/SpencerTower) - [Linkedin](https://linkedin.com/in/spencertower/)
+
+Kellen Linse - [Github](https://github.com/Kellen-Linse) - [Linkedin](https://www.linkedin.com/in/kellen-linse/)
+
+Matt Miguel - [Github](https://github.com/jamiguel23) - [Linkedin](https://www.linkedin.com/in/jamiguel23/)
+
+Erik Savage - [Github](https://github.com/eriksavage) - [Linkedin](linkedin.com/in/erikksavage)
+
+Chris Harden - [Github](https://github.com/HardenChris) - [LinkedIn](linkedin.com/in/hardenchristopher00)
 
 Project Link: [https://github.com/Knect-Dev/Knect-Dev-Backend](https://github.com/Knect-Dev/Knect-Dev-Backend)
 
@@ -228,6 +221,13 @@ Project Link: [https://github.com/Knect-Dev/Knect-Dev-Backend](https://github.co
 * []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Resources
+
+- [Choosing the Right DynamoDB Partition Key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/)
+- [Dynamoose Getting Started](https://dynamoosejs.com/getting_started/Introduction)
+- [DynamoDB Docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
+- [Object references and copying](https://javascript.info/object-copy)
 
 
 
