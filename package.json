@@ -20,7 +20,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage --detectOpenHandles"
   },
   "repository": {
     "type": "git",
