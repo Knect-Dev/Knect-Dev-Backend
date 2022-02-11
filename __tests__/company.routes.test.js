@@ -4,9 +4,9 @@ const { server } = require('../lib/server');
 const supertest = require('supertest');
 const request = supertest(server);
 
-const testUserToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RVc2VyQHRlc3QuY29tIiwiaWF0IjoxNjQ0NTMxOTE4fQ.-kG6nri040uaLoFau7jNU_Iip_bM6K5sCbAZIkSwaf0';
+const testUserToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RVc2VyQHRlc3QuY29tIiwiaWF0IjoxNjQ0NTM4NDE1fQ.ixFkzaqQDwyR1We3dEUl4ODd9vmSZRjtSf57VbddfXI';
 
-const testAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RBZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY0NDUzMjAwOH0.ZXWXYL63rZ-tnHr5sEP_P5FVoXCSpOjfVwrFx665ebY';
+const testAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RBZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY0NDUzODQ1MH0.r_VJjXbatu98qmtVvYJih1K1xJq4OSOEp25qj36Fp8U';
 
 const testCompanyObj = {
   name: 'testCompany',
