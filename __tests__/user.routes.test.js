@@ -15,7 +15,13 @@ const testUser = {
   lastName: 'miguel-reyes',
   password: 'test',
   email: 'goliath@doge.com'
+}
 
+const anotherTestUser = {
+  firstName: 'bruiser',
+  lastName: 'miguel-reyes',
+  password: 'test',
+  email: 'bruiser@doge.com'
 }
 
 describe('User Route Tests', () => {
@@ -23,10 +29,10 @@ describe('User Route Tests', () => {
   it('should not be allowed to create a user when using POST ', async () => {
     // create one company record
     const userResponse = await request.post('/Users').set('Authorization', `Bearer ${testUserToken}`).send(testUser);
-    expect(userResponse.status).toEqual(500);
+    expect(userResponse.status).toEqual(404);
     
     const adminResponse = await request.post('/Users').set('Authorization', `Bearer ${testAdminToken}`).send(testUser);
-    expect(adminResponse.status).toEqual(500);
+    expect(adminResponse.status).toEqual(404);
     // user and admin should be able to do this
   });
 
@@ -74,16 +80,22 @@ describe('User Route Tests', () => {
     expect(adminResponse.body.email).toEqual('testUser@test.com');
   });
 
+    // update company record
+    it('should throw not authorized, when useing wrong token', async () => {
+      //user-put
+      const response = await request.put(`/Users/${testUserId}`).set('Authorization', `Bearer testUserToken`).send({
+        email: 'testemail@doge.com',
+      });
+      expect(response.status).toEqual(403);
+    });
+
 
   //delete a record
   let userCreatedResponse;
 
   it('User should not be able to delete another user', async () => {
-    userCreatedResponse = await request.post('/signup').send(testUser);
+    userCreatedResponse = await request.post('/signup').send(anotherTestUser);
   //user-delete
-
-    console.log(userCreatedResponse.body.user.id)
-
     const response = await request.delete(`/Users/${userCreatedResponse.body.user.id}`).set('Authorization', `Bearer ${testUserToken}`);
     expect(response.status).toEqual(500);
   });
@@ -97,7 +109,7 @@ describe('User Route Tests', () => {
 
   it('Admin should be able to delete a user when using DELETE and an Id', async () => {
 
-    const adminUserCreatedResponse = await request.post('/signup').send(testUser);
+    const adminUserCreatedResponse = await request.post('/signup').send(anotherTestUser);
 
     console.log(adminUserCreatedResponse.body.user.id)
     //admin-delete
