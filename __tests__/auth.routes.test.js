@@ -7,12 +7,14 @@ const request = supertest(server);
 let testUserToken;
 let testUserId;
 
-//delete test user after authorization tests are complete
+
+// delete test user after authorization tests are complete
 afterAll(async () => {
   await request.delete(`/Users/${testUserId}`).set({ authorization: testUserToken});
 });
 
 describe('Basic Authentication Testing', () => {
+  
   it('should create a new user when POSTing to /signup route with proper fields filled out', async () => {
     const user = {
       "firstName": "authTest",
@@ -45,7 +47,7 @@ describe('Basic Authentication Testing', () => {
     const user = {
       "lastName": "authTest",
       "password": "password",
-      "email": "authTest@test.com",
+      "email": "authTest1@test.com",
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
@@ -55,7 +57,7 @@ describe('Basic Authentication Testing', () => {
     const user = {
       "firstName": "authTest",
       "password": "password",
-      "email": "authTest@test.com",
+      "email": "authTest2@test.com",
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
@@ -65,6 +67,17 @@ describe('Basic Authentication Testing', () => {
     const user = {
       "firstName": "authTest",
       "lastName": "authTest",
+      "email": "authTest3@test.com",
+    };
+    const response = await request.post('/signup').send(user);
+    expect(response.status).toEqual(500);
+  });
+  it('should respond with an error when POSTing to /signup route a DUPLICATE email', async () => {
+    // missing password
+    const user = {
+      "firstName": "authTest",
+      "lastName": "authTest",
+      "password": "password",
       "email": "authTest@test.com",
     };
     const response = await request.post('/signup').send(user);
@@ -75,14 +88,6 @@ describe('Basic Authentication Testing', () => {
     expect(response.status).toEqual(403);
   });
   it('should sign in a user when POSTing to /signin route with PROPER credentials', async () => {
-
-    // D8Co-226z_Np0ZAHQCcgG
-    // encoded credentials:
-    // {
-    //   "email": "authTest@test.com",
-    //   "password": "password",
-    // };
-    // Basic YXV0aFRlc3RAdGVzdC5jb206cGFzc3dvcmQ=
     const response = await request.post('/signin').set({ authorization: 'Basic YXV0aFRlc3RAdGVzdC5jb206cGFzc3dvcmQ=' });
     expect(response.status).toEqual(200);
     console.log(response.body.user[0]);
