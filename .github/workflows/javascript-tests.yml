@@ -23,3 +23,7 @@ jobs:
         npm test
       env:
         CI: true
+        PORT: 3001
+        AWS_ACCESS_KEY_ID: AKIAQLIEYAP5TE5QGAZK
+        AWS_SECRET_ACCESS_KEY: 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
+        SECRET: DOGSandCATSareBOTHcool
