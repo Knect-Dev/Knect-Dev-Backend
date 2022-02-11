@@ -4,7 +4,7 @@ const { server } = require('../lib/server');
 const supertest = require('supertest');
 const request = supertest(server);
 
-describe('Job Route Tests', () => {
+xdescribe('Job Route Tests', () => {
   // it('should create a record when using POST ', () => {
   //   // create one job record
   //   // user and admin should be able to do this

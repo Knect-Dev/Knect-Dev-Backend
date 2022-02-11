@@ -4,11 +4,11 @@ const { server } = require('../lib/server');
 const supertest = require('supertest');
 const request = supertest(server);
 
-const testUserToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RVc2VyQHRlc3QuY29tIiwiaWF0IjoxNjQ0NTM4NDE1fQ.ixFkzaqQDwyR1We3dEUl4ODd9vmSZRjtSf57VbddfXI';
+const testUserToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RVc2VyQHRlc3QuY29tIiwiaWF0IjoxNjQ0NTU0Mjg1fQ.6pbxe68028KwU81WvNy1sIn3DNGEbcNZk8yO6r5yN4g';
 
 const testAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RBZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY0NDUzODQ1MH0.r_VJjXbatu98qmtVvYJih1K1xJq4OSOEp25qj36Fp8U';
 
-const testUserId = '8DwN0nPhiIgA3MwaRY-U5';
+const testUserId = 'gH3wpp_yYXJSVI7BEVuPT';
 
 const testUser = {
   firstName: 'goliath',
