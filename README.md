@@ -32,7 +32,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Knect-Dev/Knect-Dev-Backend">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="img/knect-logo.png" alt="Logo" width="300" height="220">
   </a>
 
 <h3 align="center">Knect.Dev</h3>
@@ -84,9 +84,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[Delpoyed Page](https://knect-dev.herokuapp.com/)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Knect-Dev`, `Knect-Dev-Backend`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+This project currently implements phase one (backend) of a two phase project (full web application deployment).
+
+The Goal of this project is to create a Targeted Companies & High-Volume Tracking List that allows those seeking jobs to effectively document the jobs they have applied for as well as thier most up to date interactions. Phase one, the backend of this project, focuses on building and deploying a reliable backend with robust schemas and database models. Phase two, the frontend portion, will focus on building a user-friendly interface in React to streamline data input as well as visualize metrics in real time of your job search.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -94,7 +97,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-
+* [JavaScript](https://www.javascript.com/)
+* [node.js](https://nodejs.org/en/)
+* [jest](https://jestjs.io/docs/getting-started)
 * [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)
 * [base-64](https://www.base64decode.org/)
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
@@ -111,16 +116,11 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install i
-  ```
+This project uses npm node package manager to install the required modules.
 
 ### Installation
 
@@ -145,27 +145,96 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Use this space to show useful examples of how a project can be used. 
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Comming soon with Front End Deployment.
+
+<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+## Data Models
+This project utilized dynamoose and DynamoDB and the following data models...
+
+### Users
+``` Javascript
+'Users' {
+  'id': String, required,
+  'firstName': String, required,
+  'lastName': String, required,
+  'password': String, required,
+  'token': String, required,
+  'email': String, required,
+  'role': String, default: 'user',
+  'approvedViewer': Array of [Strings],
+  'Jobs': Array of [Strings],
+}
+```
+### Jobs
+``` Javascript
+'Jobs' {
+  'id': String, required,
+  'company': String, required,
+  'title': String, required,
+  'location': String,
+  'appliedDate': Date,
+  'applied': Boolean,
+  'technologies': Array of [Strings],
+  'openPositions': Number,
+  'interview': Boolean,
+  'contacts': String,
+  'notes': String,
+  'owner': String, required,
+}
+```
+
+### Companies
+``` Javascript
+'Companies' {
+  'id': String, required,
+  'name': String, required,
+  'leader': String,
+  'size': String,
+  'hqLocation': String,
+  'product': String,
+  'clients': String,
+  'mission': String,
+  'careersPage': String,
+}
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Routes
+
+### Users
+- GET
+- GET (all)
+- 
+
+### Jobs
+
+### Companies
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+-  Full CRUD Users w/bearer authentication
+-  Full CRUD Jobs
+-  Full CRUD Companies
+
 
 See the [open issues](https://github.com/Knect-Dev/Knect-Dev-Backend/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+## UML
+
+![uml](img/knectdev.PNG)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -216,9 +285,10 @@ Project Link: [https://github.com/Knect-Dev/Knect-Dev-Backend](https://github.co
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* Jacob Knaack
+* The Squad
+* Harambe
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
