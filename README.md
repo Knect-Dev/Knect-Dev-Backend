@@ -9,8 +9,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -25,8 +23,6 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -50,8 +46,6 @@
     <a href="https://github.com/Knect-Dev/Knect-Dev-Backend/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -79,8 +73,6 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -90,10 +82,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 ### Built With
-
 
 * [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)
 * [base-64](https://www.base64decode.org/)
@@ -106,8 +95,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -117,7 +104,9 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
+
 * npm
+
   ```sh
   npm install i
   ```
@@ -126,46 +115,52 @@ This is an example of how to list things you need to use the software and how to
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
+
    ```sh
    git clone https://github.com/Knect-Dev/Knect-Dev-Backend.git
    ```
+
 3. Install NPM packages
+
    ```sh
    npm install i
    ```
+
 4. Enter your API in `config.js`
+
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
+<!-- 1. Demo for how to post a job -->
+<!-- 2. Demo for how to find jobs on app -->
+<!-- 3. Demo how to edit a Job and the selectors/fields -->
+<!-- 4. Demo what the TA and various others users can see. -->
+
+5.
+
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] List jobs and current status of application
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+* [ ] List jobs and current status of application
+* [ ] See Jobs listed by friends
+* [ ] Feature 3
+  * [ ] Nested Feature
 
 See the [open issues](https://github.com/Knect-Dev/Knect-Dev-Backend/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -183,16 +178,12 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -211,25 +202,20 @@ Project Link: [https://github.com/Knect-Dev/Knect-Dev-Backend](https://github.co
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Resources/Acknowledgments
 
-* []()
-* []()
-* []()
+* [Choosing the Right DynamoDB Partition Key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/)
+
+* [Dynamoose Getting Started](https://dynamoosejs.com/getting_started/Introduction)
+  
+* [DynamoDB Docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
+  
+* [Object references and copying](https://javascript.info/object-copy)
+
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-## Resources
-
-- [Choosing the Right DynamoDB Partition Key](https://aws.amazon.com/blogs/database/choosing-the-right-dynamodb-partition-key/)
-- [Dynamoose Getting Started](https://dynamoosejs.com/getting_started/Introduction)
-- [DynamoDB Docs](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html)
-- [Object references and copying](https://javascript.info/object-copy)
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
