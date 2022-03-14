@@ -10,6 +10,9 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nanoid": "^3.2.0",
+    "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.4.1",
+    "sqlite3": "^5.0.2",
     "supertest": "^6.2.2"
   },
   "name": "knect-dev-backend",
@@ -20,7 +23,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "node index.js", 
+    "start": "node index.js",
     "test": "jest --verbose --coverage --detectOpenHandles"
   },
   "repository": {
