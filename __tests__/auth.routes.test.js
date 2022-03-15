@@ -1,26 +1,36 @@
 'use strict';
 
+require('dotenv').config();
 const { server } = require('../lib/server');
+const { db } = require('../lib/models');
 const supertest = require('supertest');
 const request = supertest(server);
+
+beforeAll(async () => {
+  await db.sync();
+});
+afterAll(async () => {
+  await db.drop();
+});
 
 let testUserToken;
 let testUserId;
 
 
 // delete test user after authorization tests are complete
-afterAll(async () => {
-  await request.delete(`/Users/${testUserId}`).set({ authorization: testUserToken});
-});
+// afterAll(async () => {
+//   await request.delete(`/Users/${testUserId}`).set({ authorization: testUserToken});
+// });
 
 describe('Basic Authentication Testing', () => {
   
   it('should create a new user when POSTing to /signup route with proper fields filled out', async () => {
+
     const user = {
-      "firstName": "authTest",
-      "lastName": "authTest",
-      "password": "password",
-      "email": "authTest@test.com",
+      firstName: "authTest",
+      lastName: "authTest",
+      password: "password",
+      email: "authTest@test.com"
     };
 
     const response = await request.post('/signup').send(user);
@@ -35,9 +45,9 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route without EMAIL', async () => {
     // missing email
     const user = {
-      "firstName": "authTest",
-      "lastName": "authTest",
-      "password": "password",
+      firstName: "authTest",
+      lastName: "authTest",
+      password: "password"
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
@@ -45,9 +55,9 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route without FIRSTNAME', async () => {
     // missing firstName
     const user = {
-      "lastName": "authTest",
-      "password": "password",
-      "email": "authTest1@test.com",
+      lastName: "authTest",
+      password: "password",
+      email: "authTest1@test.com"
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
@@ -55,9 +65,9 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route without LASTNAME', async () => {
     // missing lastName
     const user = {
-      "firstName": "authTest",
-      "password": "password",
-      "email": "authTest2@test.com",
+      firstName: "authTest",
+      password: "password",
+      email: "authTest2@test.com"
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
@@ -65,9 +75,9 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route without PASSWORD', async () => {
     // missing password
     const user = {
-      "firstName": "authTest",
-      "lastName": "authTest",
-      "email": "authTest3@test.com",
+      firstName: "authTest",
+      lastName: "authTest",
+      email: "authTest3@test.com"
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
