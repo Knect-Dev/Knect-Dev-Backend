@@ -77,7 +77,7 @@ describe('Job Route Tests', () => {
     expect(response.body).toHaveProperty('location');
     expect(response.body).toHaveProperty('appliedDate');
     expect(response.body).toHaveProperty('applied');
-    // expect(response.body).toHaveProperty('technologies'); cannot have array datatype with sqlite
+    expect(response.body).toHaveProperty('technologies');
     expect(response.body).toHaveProperty('openPositions');
     expect(response.body).toHaveProperty('interview');
     expect(response.body).toHaveProperty('contacts');
