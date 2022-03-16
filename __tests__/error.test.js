@@ -36,8 +36,7 @@ describe("500 Error Handler Tests", () => {
 
   it('should create test accounts for job route', async () => {
     const errorAdmin = await request.post('/signup').send({
-      firstName: "errorAdmin",
-      lastName: "errorAdmin",
+      name: "errorAdmin",
       password: "password",
       email: "errorAdmin@test.com",
       role: "admin"

@@ -27,8 +27,7 @@ describe('Basic Authentication Testing', () => {
   it('should create a new user when POSTing to /signup route with proper fields filled out', async () => {
 
     const user = {
-      firstName: "authTest",
-      lastName: "authTest",
+      name: "authTest",
       password: "password",
       email: "authTest@test.com"
     };
@@ -36,8 +35,7 @@ describe('Basic Authentication Testing', () => {
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(201);
     expect(response.body.user.id).toBeTruthy();
-    expect(response.body.user.firstName).toEqual('authTest');
-    expect(response.body.user.lastName).toEqual('authTest');
+    expect(response.body.user.name).toEqual('authTest');
     expect(response.body.user.email).toEqual('authTest@test.com');
     expect(response.body.user.role).toEqual('user');
     expect(response.body.user.token).toBeTruthy();
@@ -45,29 +43,17 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route without EMAIL', async () => {
     // missing email
     const user = {
-      firstName: "authTest",
-      lastName: "authTest",
+      name: "authTest",
       password: "password"
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
   });
-  it('should respond with an error when POSTing to /signup route without FIRSTNAME', async () => {
+  it('should respond with an error when POSTing to /signup route without name', async () => {
     // missing firstName
     const user = {
-      lastName: "authTest",
       password: "password",
       email: "authTest1@test.com"
-    };
-    const response = await request.post('/signup').send(user);
-    expect(response.status).toEqual(500);
-  });
-  it('should respond with an error when POSTing to /signup route without LASTNAME', async () => {
-    // missing lastName
-    const user = {
-      firstName: "authTest",
-      password: "password",
-      email: "authTest2@test.com"
     };
     const response = await request.post('/signup').send(user);
     expect(response.status).toEqual(500);
@@ -75,8 +61,7 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route without PASSWORD', async () => {
     // missing password
     const user = {
-      firstName: "authTest",
-      lastName: "authTest",
+      name: "authTest",
       email: "authTest3@test.com"
     };
     const response = await request.post('/signup').send(user);
@@ -85,8 +70,7 @@ describe('Basic Authentication Testing', () => {
   it('should respond with an error when POSTing to /signup route a DUPLICATE email', async () => {
     // missing password
     const user = {
-      "firstName": "authTest",
-      "lastName": "authTest",
+      "name": "authTest",
       "password": "password",
       "email": "authTest@test.com",
     };

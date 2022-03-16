@@ -25,15 +25,13 @@ let jobId2;
 describe('Job Route Tests', () => {
   it('should create test accounts for job route', async () => {
     const jobUser = await request.post('/signup').send({
-      firstName: "jobUser",
-      lastName: "jobUser",
+      name: "jobUser",
       password: "password",
       email: "jobUser@test.com"
     });
 
     const jobAdmin = await request.post('/signup').send({
-      firstName: "jobAdmin",
-      lastName: "jobAdmin",
+      name: "jobAdmin",
       password: "password",
       email: "jobAdmin@test.com",
       role: "admin"
@@ -74,13 +72,18 @@ describe('Job Route Tests', () => {
 
     expect(response.status).toEqual(201);
     expect(response.body.id).toBeTruthy();
-    expect(response.body).toHaveProperty('location');
+    expect(response.body).toHaveProperty('company');
+    expect(response.body).toHaveProperty('title');
+    expect(response.body).toHaveProperty('jobId');
+    expect(response.body).toHaveProperty('jobUrl');
     expect(response.body).toHaveProperty('appliedDate');
-    expect(response.body).toHaveProperty('applied');
-    expect(response.body).toHaveProperty('technologies');
+    expect(response.body).toHaveProperty('stage');
+    expect(response.body).toHaveProperty('status');
     expect(response.body).toHaveProperty('openPositions');
-    expect(response.body).toHaveProperty('interview');
-    expect(response.body).toHaveProperty('contacts');
+    expect(response.body).toHaveProperty('location');
+    expect(response.body).toHaveProperty('technologies');
+    expect(response.body).toHaveProperty('targeted');
+    expect(response.body).toHaveProperty('offer');
     expect(response.body).toHaveProperty('notes');
   });
   it('should REJECT admin attempt to POST and generate job', async () => {

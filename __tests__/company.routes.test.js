@@ -35,15 +35,13 @@ describe('Companies Route Tests', () => {
 
   it('should create test accounts for company route', async () => {
     const companyUser = await request.post('/signup').send({
-      firstName: "companyUser",
-      lastName: "companyUser",
+      name: "companyUser",
       password: "password",
       email: "companyUser@test.com"
     });
 
     const companyAdmin = await request.post('/signup').send({
-      firstName: "companyAdmin",
-      lastName: "companyAdmin",
+      name: "companyAdmin",
       password: "password",
       email: "companyAdmin@test.com",
       role: "admin"

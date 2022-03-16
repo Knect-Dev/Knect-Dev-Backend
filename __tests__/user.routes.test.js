@@ -18,31 +18,27 @@ let adminToken;
 let userID;
 
 const testUser = {
-  firstName: 'goliath',
-  lastName: 'miguel-reyes',
+  name: 'archie',
   password: 'test',
-  email: 'goliath@doge.com'
+  email: 'archie@meow.com'
 }
 
 const anotherTestUser = {
-  firstName: 'bruiser',
-  lastName: 'miguel-reyes',
+  name: 'chloe',
   password: 'test',
-  email: 'bruiser@doge.com'
+  email: 'chloe@meow.com'
 }
 
 describe('User Route Tests', () => {
   it('should create test accounts for user routes', async () => {
     const userUser = await request.post('/signup').send({
-      firstName: "userUser",
-      lastName: "userUser",
+      name: "userUser",
       password: "password",
       email: "userUser@test.com"
     });
 
     const userAdmin = await request.post('/signup').send({
-      firstName: "userAdmin",
-      lastName: "userAdmin",
+      name: "userAdmin",
       password: "password",
       email: "userAdmin@test.com",
       role: "admin"
@@ -70,14 +66,14 @@ describe('User Route Tests', () => {
     const response = await request.get(`/Users/${userID}`).set('Authorization', `Bearer ${userToken}`);
     expect(response.status).toEqual(200);
     expect(response.body).toBeDefined();
-    expect(response.body.firstName).toEqual('userUser');
+    expect(response.body.name).toEqual('userUser');
     
     //admin-findOne
     const adminResponse = await request.get(`/Users/${userID}`).set('Authorization', `Bearer ${adminToken}`);
 
     expect(adminResponse.status).toEqual(200);
     expect(adminResponse.body).toBeDefined();
-    expect(adminResponse.body.firstName).toEqual('userUser');
+    expect(adminResponse.body.name).toEqual('userUser');
   });
 
   // return a list of all companies
@@ -97,10 +93,10 @@ describe('User Route Tests', () => {
   it('should update a record when using PUT and an Id ', async () => {
     //user-put
     const response = await request.put(`/Users/${userID}`).set('Authorization', `Bearer ${userToken}`).send({
-      email: 'testemail@doge.com',
+      email: 'testemail@test.com',
     });
     expect(response.status).toEqual(202);
-    expect(response.body.email).toEqual('testemail@doge.com');
+    expect(response.body.email).toEqual('testemail@test.com');
     // admin-put
     const adminResponse = await request.put(`/Users/${userID}`).set('Authorization', `Bearer ${adminToken}`).send({
       email: 'testUser@test.com',
@@ -113,7 +109,7 @@ describe('User Route Tests', () => {
     it('should throw not authorized, when useing wrong token', async () => {
       //user-put
       const response = await request.put(`/Users/${userID}`).set('Authorization', `Bearer userToken`).send({
-        email: 'testemail@doge.com',
+        email: 'testemail@test.com',
       });
       expect(response.status).toEqual(403);
     });
