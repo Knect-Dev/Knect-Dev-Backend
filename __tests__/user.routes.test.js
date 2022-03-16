@@ -1,14 +1,21 @@
 'use strict';
 
+require('dotenv').config();
 const { server } = require('../lib/server');
+const { db } = require('../lib/models');
 const supertest = require('supertest');
 const request = supertest(server);
 
-const testUserToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RVc2VyQHRlc3QuY29tIiwiaWF0IjoxNjQ0NTU0Mjg1fQ.6pbxe68028KwU81WvNy1sIn3DNGEbcNZk8yO6r5yN4g';
+beforeAll(async () => {
+  await db.sync();
+});
+afterAll(async () => {
+  await db.drop();
+});
 
-const testAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RBZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY0NDUzODQ1MH0.r_VJjXbatu98qmtVvYJih1K1xJq4OSOEp25qj36Fp8U';
-
-const testUserId = 'gH3wpp_yYXJSVI7BEVuPT';
+let userToken;
+let adminToken;
+let userID;
 
 const testUser = {
   firstName: 'goliath',
@@ -25,13 +32,34 @@ const anotherTestUser = {
 }
 
 describe('User Route Tests', () => {
+  it('should create test accounts for user routes', async () => {
+    const userUser = await request.post('/signup').send({
+      firstName: "userUser",
+      lastName: "userUser",
+      password: "password",
+      email: "userUser@test.com"
+    });
+
+    const userAdmin = await request.post('/signup').send({
+      firstName: "userAdmin",
+      lastName: "userAdmin",
+      password: "password",
+      email: "userAdmin@test.com",
+      role: "admin"
+    });
+
+    userToken = userUser.body.user.token;
+    userID = userUser.body.user.id;
+    adminToken = userAdmin.body.user.token;
+  });
+
 
   it('should not be allowed to create a user when using POST ', async () => {
     // create one company record
-    const userResponse = await request.post('/Users').set('Authorization', `Bearer ${testUserToken}`).send(testUser);
+    const userResponse = await request.post('/Users').set('Authorization', `Bearer ${userToken}`).send(testUser);
     expect(userResponse.status).toEqual(404);
     
-    const adminResponse = await request.post('/Users').set('Authorization', `Bearer ${testAdminToken}`).send(testUser);
+    const adminResponse = await request.post('/Users').set('Authorization', `Bearer ${adminToken}`).send(testUser);
     expect(adminResponse.status).toEqual(404);
     // user and admin should be able to do this
   });
@@ -39,25 +67,26 @@ describe('User Route Tests', () => {
   it('should read a record when using GET and an Id ', async () => {
     
     //user-findOne
-    const response = await request.get(`/Users/${testUserId}`).set('Authorization', `Bearer ${testUserToken}`);
+    const response = await request.get(`/Users/${userID}`).set('Authorization', `Bearer ${userToken}`);
     expect(response.status).toEqual(200);
     expect(response.body).toBeDefined();
-    expect(response.body[0].firstName).toEqual('testUser');
+    expect(response.body.firstName).toEqual('userUser');
     
     //admin-findOne
-    const adminResponse = await request.get(`/Users/${testUserId}`).set('Authorization', `Bearer ${testAdminToken}`);
+    const adminResponse = await request.get(`/Users/${userID}`).set('Authorization', `Bearer ${adminToken}`);
+
     expect(adminResponse.status).toEqual(200);
     expect(adminResponse.body).toBeDefined();
-    expect(adminResponse.body[0].firstName).toEqual('testUser');
+    expect(adminResponse.body.firstName).toEqual('userUser');
   });
 
   // return a list of all companies
   it('should read all records when using GET no other search params ', async () => {
     //User-findAll
-    const response = await request.get('/Users').set('Authorization', `Bearer ${testUserToken}`);
+    const response = await request.get('/Users').set('Authorization', `Bearer ${userToken}`);
     expect(response.status).toEqual(500);
     // admin-findAll
-    const adminResponse = await request.get('/Users').set('Authorization', `Bearer ${testAdminToken}`);
+    const adminResponse = await request.get('/Users').set('Authorization', `Bearer ${adminToken}`);
     expect(adminResponse.status).toEqual(200);
     expect(adminResponse.body).toBeDefined();
     expect(adminResponse.body.length > 1).toBe(true); // Assumes more than one entry in our company DB
@@ -67,13 +96,13 @@ describe('User Route Tests', () => {
   // update company record
   it('should update a record when using PUT and an Id ', async () => {
     //user-put
-    const response = await request.put(`/Users/${testUserId}`).set('Authorization', `Bearer ${testUserToken}`).send({
+    const response = await request.put(`/Users/${userID}`).set('Authorization', `Bearer ${userToken}`).send({
       email: 'testemail@doge.com',
     });
     expect(response.status).toEqual(202);
     expect(response.body.email).toEqual('testemail@doge.com');
     // admin-put
-    const adminResponse = await request.put(`/Users/${testUserId}`).set('Authorization', `Bearer ${testAdminToken}`).send({
+    const adminResponse = await request.put(`/Users/${userID}`).set('Authorization', `Bearer ${adminToken}`).send({
       email: 'testUser@test.com',
     });
     expect(adminResponse.status).toEqual(202);
@@ -83,7 +112,7 @@ describe('User Route Tests', () => {
     // update company record
     it('should throw not authorized, when useing wrong token', async () => {
       //user-put
-      const response = await request.put(`/Users/${testUserId}`).set('Authorization', `Bearer testUserToken`).send({
+      const response = await request.put(`/Users/${userID}`).set('Authorization', `Bearer userToken`).send({
         email: 'testemail@doge.com',
       });
       expect(response.status).toEqual(403);
@@ -96,8 +125,8 @@ describe('User Route Tests', () => {
   it('User should not be able to delete another user', async () => {
     userCreatedResponse = await request.post('/signup').send(anotherTestUser);
   //user-delete
-    const response = await request.delete(`/Users/${userCreatedResponse.body.user.id}`).set('Authorization', `Bearer ${testUserToken}`);
-    expect(response.status).toEqual(500);
+    const response = await request.delete(`/Users/${userCreatedResponse.body.user.id}`).set('Authorization', `Bearer ${userToken}`);
+    expect(response.status).toEqual(403);
   });
 
     //delete a record
@@ -113,7 +142,7 @@ describe('User Route Tests', () => {
 
     console.log(adminUserCreatedResponse.body.user.id)
     //admin-delete
-    const response = await request.delete(`/Users/${adminUserCreatedResponse.body.user.id}`).set('Authorization', `Bearer ${testAdminToken}`);
+    const response = await request.delete(`/Users/${adminUserCreatedResponse.body.user.id}`).set('Authorization', `Bearer ${adminToken}`);
     expect(response.status).toEqual(200);
   });
 });
