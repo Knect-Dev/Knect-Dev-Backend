@@ -31,8 +31,6 @@ describe('Job Route Tests', () => {
       email: "jobUser@test.com"
     });
 
-    console.log(jobUser.body.user);
-
     const jobAdmin = await request.post('/signup').send({
       firstName: "jobAdmin",
       lastName: "jobAdmin",
@@ -60,10 +58,9 @@ describe('Job Route Tests', () => {
     let response = await request.post('/Jobs').send(job).set({ authorization: userToken });
     let response2 = await request.post('/Jobs').send(job).set({ authorization: userToken });
     expect(response.status).toEqual(201);
-    // console.log(response.body);
+
     jobId = response.body.id;
     jobId2 = response2.body.id;
-    console.log('job ids', jobId, jobId2);
   });
 
   it('should create a record when using POST and generate non-required document keys ', async () => {
@@ -74,7 +71,7 @@ describe('Job Route Tests', () => {
     }
 
     let response = await request.post('/Jobs').send(job).set({ authorization: userToken });
-    console.log(response.body);
+
     expect(response.status).toEqual(201);
     expect(response.body.id).toBeTruthy();
     expect(response.body).toHaveProperty('location');
@@ -121,7 +118,6 @@ describe('Job Route Tests', () => {
       'title': 'newTestJobTitleRequired',
     }
     const response = await request.put(`/Jobs/${jobId}`).set({ authorization: userToken }).send(updatedJob);
-    console.log("PUT RESPONSE BODY: ", response.body);
     expect(response.status).toEqual(202);
   });
 
