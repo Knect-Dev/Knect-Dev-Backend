@@ -23,6 +23,8 @@
     "lib": "lib"
   },
   "scripts": {
+    "migrate": "sequelize-cli db:migrate",
+    "migration": "sequelize-cli migration:generate --name migration-skeleton",
     "start": "node index.js",
     "test": "jest --verbose --coverage --detectOpenHandles"
   },
