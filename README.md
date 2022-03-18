@@ -69,6 +69,7 @@
         <li><a href="#user-model">User Model</a></li>
         <li><a href="#job-model">Job Model</a></li>
         <li><a href="#company-model">Company Model</a></li>
+        <li><a href="#company-model">Contact Model</a></li>
       </ul>
     <li><a href="#access-control-list">Access Control List</a></li>
     <li><a href="#routes">Routes</a></li>
@@ -91,12 +92,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Delpoyed Page](https://knect-dev.herokuapp.com/)
+[Deployed Page](https://www.knect.dev/home)
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 This project currently implements phase one (backend) of a two phase project (full web application deployment).
 
-The Goal of this project is to create a Targeted Companies & High-Volume Tracking List that allows those seeking jobs to effectively document the jobs they have applied for as well as thier most up to date interactions. Phase one, the backend of this project, focuses on building and deploying a reliable backend with robust schemas and database models. Phase two, the frontend portion, will focus on building a user-friendly interface in React to streamline data input as well as visualize metrics in real time of your job search.
+The Goal of this project is to create a Targeted Companies & High-Volume Tracking List that allows those seeking jobs to effectively document the jobs they have applied for as well as thier most up to date interactions. Phase one, the backend of this project, focused on building and deploying a reliable backend with robust schemas and database models. Phase two, the frontend portion, focused on building a user-friendly interface in React with and Ionic framework to streamline data input as well as visualize metrics in real time of your job search.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -104,21 +105,36 @@ The Goal of this project is to create a Targeted Companies & High-Volume Trackin
 
 ### Built With
 
+General:
 * [JavaScript](https://www.javascript.com/)
+* [Git](https://git-scm.com/)
+* [GitHub](https://github.com/)
+* [ThunderClient](https://www.thunderclient.com/)
+* [Postman](https://www.postman.com/)
+
+Frontend:
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Ionic](https://ionicframework.com/)
+* [Sass](https://sass-lang.com/)
+
+Backend:
 * [node.js](https://nodejs.org/en/)
 * [jest](https://jestjs.io/docs/getting-started)
 * [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)
 * [base-64](https://www.base64decode.org/)
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
 * [dotenv](https://github.com/motdotla/dotenv)
-* [dynamoose](https://dynamoosejs.com/getting_started/Introduction)
+* [PostgreSQL](https://www.postgresql.org/)
 * [express](https://expressjs.com/)
 * [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 * [nanoid](https://github.com/ai/nanoid)
 
+Hosted On:
+* [heroku](https://id.heroku.com/)
+* [netlify](https://www.netlify.com/)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -129,37 +145,52 @@ To get a local copy up and running follow these simple example steps.
 
 This project uses npm node package manager to install the required modules.
 
-### Installation
+### Installation: Backend
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/Knect-Dev/Knect-Dev-Backend.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install i
    ```
-4. Enter your API in `.env`
+3. Enter your API in `.env`
    ```js
     PORT = 3000
     API_KEY = 'ENTER YOUR API';
-    AWS_ACCESS_KEY_ID = 'YOUR AWS ACCESS KEY';
-    AWS_SECRET_ACCESS_KEY = 'YOUR AWS SECRET ACCESS KEY';
     SECRET = 'YOUR SECRET';
    
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Installation: Frontend
 
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Knect-Dev/Knect-Dev-Frontend.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install i
+   ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. 
+1. Create a new user account or sign in to an existing account.
 
-Comming soon with Front End Deployment.
+2. Upon signing in for the first time, the Jobs list will be blank, so click on the green (+) button in the upper right corner to open up the form for adding a new Job opportunity to your collection.
+
+3. In the form that pops up, click the padlock icon in the bottom left corner to unlock the form for and begin editing.
+
+4. `Job Title` and `Company` are required fields; all others are optional.
+
+5. To add or change the company, type part of `search companies` to see if the company already exists in the database. 
+
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
@@ -180,15 +211,12 @@ This project utilized dynamoose and DynamoDB and the following data models...
 ### User Model
 ``` Javascript
 'Users' {
-  'id': String, required,
-  'firstName': String, required,
-  'lastName': String, required,
-  'password': String, required,
-  'token': String, required,
-  'email': String, required,
-  'role': String, default: 'user',
-  'approvedViewer': Array of [Strings],
-  'Jobs': Array of [Strings],
+  id: PRIMARY KEY, required,
+  name: STRING, required,
+  password: STRING, required,
+  token: STRING, required,
+  email: STRING, required,
+  role: STRING, required,
 }
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -196,18 +224,20 @@ This project utilized dynamoose and DynamoDB and the following data models...
 ### Job Model
 ``` Javascript
 'Jobs' {
-  'id': String, required,
-  'company': String, required,
-  'title': String, required,
-  'location': String,
-  'appliedDate': Date,
-  'applied': Boolean,
-  'technologies': Array of [Strings],
-  'openPositions': Number,
-  'interview': Boolean,
-  'contacts': String,
-  'notes': String,
-  'owner': String, required,
+  id: PRIMARY KEY, required,
+  company: STRING, required,
+  title: STRING, required,
+  jobId: STRING,
+  jobUrl: STRING,
+  appliedDate: DATE,
+  stage: STRING, required,
+  status: BOOLEAN, required,
+  openPositions: INTEGER,
+  location: STRING,
+  technologies: STRING,
+  targeted: BOOLEAN, required,
+  offer: INTEGER,
+  notes: STRING(1250),
 }
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -215,17 +245,54 @@ This project utilized dynamoose and DynamoDB and the following data models...
 ### Company Model
 ``` Javascript
 'Companies' {
-  'id': String, required,
-  'name': String, required,
-  'leader': String,
-  'size': String,
-  'hqLocation': String,
-  'product': String,
-  'clients': String,
-  'mission': String,
-  'careersPage': String,
+  id: PRIMARY KEY, required,
+  name: STRING, required,
+  logo: STRING,
+  leader: STRING,
+  founded: STRING,
+  hq: STRING,
+  size: INTEGER,
+  product: STRING,
+  clients: STRING,
+  mission: STRING(500),
+  companyUrl: STRING,
+  careersUrl: STRING,
 }
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Contact Model
+``` Javascript
+'Contacts' {
+  id: PRIMARY KEY, required,
+  name: STRING, required,
+  company: STRING,
+  position: STRING,
+  email: STRING,
+  linkedIn: STRING,
+  phone: STRING,
+  photo: STRING,
+  notes: STRING,
+}
+```
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+## Data Associations and User Experience
+
+We decided early on that we wanted to use a relational database model for a few reasons:
+1. We wanted our Users to have a unique user experience, and allow them to create Jobs that were unique to them
+  - We did this by setting UserId within the Job record on creation, establishing a One-to-Many association between Users and Jobs. 
+  - Upon logging in, the User's unique jobs will render to the screen.
+2. We also wanted our Companies to be community based, meaning a Company is created once, then edited by all
+  - Companies also have a unique id, and Job records utilize this when created or edited, and create an association within the database.
+  - When a change is made to a company by a User, the database is updated and the new info is propogated to all other Users.
+3. The Jobs are the crux of the application, in functionality as well as associations
+  - Jobs, as mentioned before, contain both a UserId and a CompanyId which establish associations between all three models.
+  - These associations are then used to conditionally render the Company associated to the job, and the Contacts related to both the Job and the Company
+4. Lastly, Contacts are related to all three of the previous models
+  - The Contacts are rendered based on UserId, JobId, and CompanyId.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -326,6 +393,35 @@ This project utilized dynamoose and DynamoDB and the following data models...
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Contact Routes
+- GET by Id
+  - requires: token, contact id
+  - returns: status 200, object containing contact information
+  - admin: can do this for any contact
+  - user: can only do this for contacts they own
+- GET (all)
+  - requires: token
+  - returns: status 200, list of all contact objects
+  - admin: access to all contacts
+  - user: can only do this for contacts they own
+- CREATE
+  - requires: token
+  - returns: status 201, created contact object
+  - admin: cannot create contacts
+  - user: create thier own contacts
+- PUT
+  - requires: token, contact id
+  - returns: status 202, update user object
+  - admin: access to all contacts
+  - user: can only do this for contacts they own
+- DELETE
+  - requires: token, contacts id
+  - returns: status 200
+  - admin: access to all contacts
+  - user: can only do this for contacts they own
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Auth
 - POST `/signup` creates new user requiring first name, last name, email, and password
 - POST `/signin` requires email and password (basic authentication)
@@ -338,7 +434,7 @@ This project utilized dynamoose and DynamoDB and the following data models...
 - [x] Full CRUD Users w/bearer authentication
 - [x] Full CRUD Jobs
 - [x] Full CRUD Companies
-- [ ] Front End React Interface
+- [x] Front End Ionic/React Interface
 
 
 See the [open issues](https://github.com/Knect-Dev/Knect-Dev-Backend/issues) for a full list of proposed features (and known issues).
