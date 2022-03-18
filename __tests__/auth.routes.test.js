@@ -85,7 +85,5 @@ describe('Basic Authentication Testing', () => {
     const response = await request.post('/signin').set({ authorization: 'Basic YXV0aFRlc3RAdGVzdC5jb206cGFzc3dvcmQ=' });
     expect(response.status).toEqual(200);
     console.log(response.body.user[0]);
-    testUserToken = response.body.user[0].token;
-    testUserId = response.body.user[0].id;
   });
 });
